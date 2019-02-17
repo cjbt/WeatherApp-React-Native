@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Input, Tile } from "react-native-elements";
+import { Header, Input, Tile } from "react-native-elements";
 import { StyleSheet, View, Text } from "react-native";
 import axios from "axios";
 
@@ -20,11 +20,7 @@ export default class App extends React.Component {
             position.coords.latitude
           },${position.coords.longitude}`
         )
-        .then(res =>
-          this.setState({ data: res.data }, () =>
-            alert(`https:${this.state.data.current.condition.icon}`)
-          )
-        )
+        .then(res => this.setState({ data: res.data }))
         .catch(err => console.log(err));
     });
   };
@@ -32,21 +28,39 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Input
-          placeholder="INPUT WITH CUSTOM ICON"
-          leftIcon={<Icon name="user" size={24} color="black" />}
+        <Header
+          leftComponent={{ icon: "menu", color: "#fff" }}
+          centerComponent={{
+            text: "CJ & Hamza Weather Services",
+            style: { color: "#fff" }
+          }}
+          rightComponent={{ icon: "home", color: "#fff" }}
         />
         {!this.state.data.current ? (
           <Text>LOADING...</Text>
         ) : (
-          <Tile
-            imageSrc={{
-              uri: `https:${this.state.data.current.condition.icon}`
-            }}
-            title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores dolore exercitationem"
-            featured
-            caption="Some Caption Text"
-          />
+          <>
+            <Tile
+              title={`${this.state.data.location.name}, ${
+                this.state.data.location.country
+              } `}
+              featured
+              caption={this.state.data.location.localtime}
+            />
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: 20
+              }}
+            >
+              <Text>Temperature</Text>
+              <Text>{`${this.state.data.current.temp_f} F`}</Text>
+              <Text>Feels Like</Text>
+              <Text>{`${this.state.data.current.feelslike_f} F`}</Text>
+            </View>
+          </>
         )}
       </View>
     );
@@ -56,8 +70,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "#fff"
   }
 });
