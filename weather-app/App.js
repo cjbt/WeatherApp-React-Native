@@ -29,35 +29,35 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-          leftComponent={{ icon: "menu", color: "#fff" }}
           centerComponent={{
             text: "CJ & Hamza Weather Services",
             style: { color: "#fff" }
           }}
-          rightComponent={{ icon: "home", color: "#fff" }}
         />
         {!this.state.data.current ? (
           <Text>LOADING...</Text>
         ) : (
           <>
-
-          <Card
+            <Card
               title={`${this.state.data.location.name}, ${
                 this.state.data.location.country
               } `}
-              titleStyle={{display: 'flex', alignItems: 'center'}}
-              image={{uri: `https:${this.state.data.current.condition.icon}`}}
-              imageWrapperStyle={{display: 'flex', alignItems: 'center'}}
-              imageStyle={{width: '40%'}}
-              
-          >
+              titleStyle={{ display: "flex", alignItems: "center" }}
+              image={{ uri: `https:${this.state.data.current.condition.icon}` }}
+              imageWrapperStyle={{ display: "flex", alignItems: "center" }}
+              imageStyle={{ width: "40%" }}
+            >
               <View
                 style={{
-                  display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'
-                }}> 
-                  <Text h1>{this.state.data.current.temp_f} ℉</Text>
-                  <Text h4>{this.state.data.current.condition.text}</Text>
-              </View>   
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center"
+                }}
+              >
+                <Text h1>{this.state.data.current.temp_f} ℉</Text>
+                <Text h4>{this.state.data.current.condition.text}</Text>
+              </View>
             </Card>
 
             {/* <Tile
@@ -71,7 +71,7 @@ export default class App extends React.Component {
             /> */}
             <View
               style={{
-                display: 'flex',
+                display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-around",
                 marginTop: 20
@@ -83,13 +83,13 @@ export default class App extends React.Component {
               <Text>{`${this.state.data.current.feelslike_f} F`}</Text>
             </View>
             <View
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: 40
-            }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: 40
+              }}
             >
-                            <Text h2>{this.state.data.current.wind_dir}</Text>
+              <Text h2>{this.state.data.current.wind_dir}</Text>
               <Text>Wind Direction</Text>
               <Text>Speed: {this.state.data.current.wind_mph} mph</Text>
             </View>
