@@ -29,12 +29,10 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-          leftComponent={{ icon: "menu", color: "#fff" }}
           centerComponent={{
             text: "CJ & Hamza Weather Services",
             style: { color: "#fff" }
           }}
-          rightComponent={{ icon: "home", color: "#fff" }}
         />
         {!this.state.data.current ? (
           <Text>LOADING...</Text>
