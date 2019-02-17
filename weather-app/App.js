@@ -89,8 +89,7 @@ export default class App extends React.Component {
               marginTop: 40
             }}
             >
-              
-              <Text h2>{this.state.data.current.wind_dir}</Text>
+                            <Text h2>{this.state.data.current.wind_dir}</Text>
               <Text>Wind Direction</Text>
               <Text>Speed: {this.state.data.current.wind_mph} mph</Text>
             </View>
